@@ -27,7 +27,7 @@ clean_fosas <- function(files) {
             str_pad(df$cve_ente, width= 2, side="left", pad="0")
       }
       
-      df$cve_muni <- if (df$cve_muni < 99) {
+      df$cve_muni <- if (df$cve_muni < 100) {
             str_pad(df$cve_muni, width= 3, side="left", pad="0") 
       } 
       
@@ -70,8 +70,9 @@ main <- function(){
 
 main()
 
-# fin. 
+
 
 
 
       
+# FIN. 

@@ -48,10 +48,10 @@ mapa_prensa <- shp_munis %>%
 mapa_prensa %>% 
       ggplot() +
       geom_sf(aes(geometry = geometry, fill = total_fosas), size = 0.2, color = "black") +
-      scale_fill_continuous(breaks = c(0, 30, 60, 100),
+      scale_fill_continuous(breaks = c(1, 30, 60, 100),
                             low = "#BACDB0", high = "#475B63",  na.value = "white",
                             name = "Total de fosas") +
-      labs(title = "Distribución territorial del total de fosas observadas por prensa en México",
+      labs(title = "Distribución territorial del total de fosas observadas por prensa en municipios de México",
            subtitle = "2007-2019") +
       theme_void(base_family = "Courier New") +
       theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12),
@@ -145,6 +145,7 @@ estados_tf %>%
    
 walk(devices, ~ ggsave(filename = file.path(paste0(files$tf_idf, .x)),
                        device = .x, width = 14, height = 10))
+
+
+
 # FIN. 
-
-
