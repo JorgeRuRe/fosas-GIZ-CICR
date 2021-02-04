@@ -1,0 +1,47 @@
+---
+title: "Tentativo"
+author: "Jorge Ruiz"
+date: "2/4/2021"
+output:
+  word_document:  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      message = FALSE,
+                      warning = FALSE,
+                      cache = FALSE,
+                      fig.pos = 'ht'
+                     )
+```
+
+
+
+```{r}
+# Paquetes 
+if(!require(pacman)) install.packages("pacman")
+pacman::p_load(tidyverse, here)
+
+
+# Preparar archivos 
+files <- list(fosas_clean = here("import", "output", "fosas_clean.rds"),
+              mapa_munis = here("descriptives", "output", "mapa_munis.png"),
+              top_sitios = here("descriptives", "output", "top_sitios.png"),
+              tf_idf = here("descriptives", "output", "tf_idf.png"))
+
+
+# Cargar datos 
+fosas_clean <- readRDS(files$fosas_clean) %>% mutate(inegi=as.character(inegi))
+```
+
+
+## Introducción 
+
+El fenómeno de la desaparición de personas y hallazgos de fosas clandestinas es uno de los problemas públicos más apremiantes en México. Sus hallazgos han sido recurrentes y extendidos en la mayoría de las entidades del país, durante un periodo de quince años. De acuerdo con cifras oficiales, en el país se han observado 
+
+
+
+
+
+
+
