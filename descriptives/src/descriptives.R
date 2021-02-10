@@ -12,7 +12,6 @@ pacman::p_load(tidyverse, sf, here, tm, tidytext)
 
 # Files -------------------------------------------------------------------
 files <- list(fosas_clean = here("import", "output", "fosas_clean.rds"),
-              shp_munis = here("descriptives", "input", "Municipios_Mx.shp"),
               mapa_munis = here("descriptives", "output", "mapa_munis."),
               top_sitios = here("descriptives", "output", "top_sitios."),
               tf_idf = here("descriptives", "output", "tf_idf."))
@@ -22,7 +21,6 @@ devices <- c("png", "svg")
 
 # Cargar datos  -----------------------------------------------------------
 fosas_clean <- readRDS(files$fosas_clean) %>% mutate(inegi=as.character(inegi))
-shp_munis <- st_read(files$shp_munis)
 
 
 
@@ -60,7 +58,7 @@ fosas_tokens %>%
          axis.text.y = element_text(face = "bold")) +
    labs(y = "Count",
         x = NULL,
-        title = "Ubicaciones geográfica de fosas clandestinas observadas por prensa",
+        title = "Ubicaciones geográficas de fosas clandestinas observadas por prensa",
         subtitle = "Con base en la descripción del texto de la nota") 
 
 walk(devices, ~ ggsave(filename = file.path(paste0(files$top_sitios, .x)),
