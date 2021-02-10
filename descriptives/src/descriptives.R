@@ -26,40 +26,6 @@ shp_munis <- st_read(files$shp_munis)
 
 
 
-# mapa fosas --------------------------------------------------------------------
-
-# agrupar por munis 
-casos_por_municipio <- fosas_clean %>% 
-      group_by(municipio, inegi) %>%
-      summarise(total_fosas = sum(fosas, na.rm = T),
-                total_cuerpos = sum(total_cuerpos, na.rm = T),
-                total_masculino = sum(masculino, na.rm = T),
-                total_femenino = sum(femenino, na.rm = T)) %>% 
-      ungroup()
-
-
-#  Datos para mapa
-mapa_prensa <- shp_munis %>%
-      left_join(casos_por_municipio,
-                by = c("CVEGEO" = "inegi"))
-
-
-# mapear fosas 
-mapa_prensa %>% 
-      ggplot() +
-      geom_sf(aes(geometry = geometry, fill = total_fosas), size = 0.2, color = "black") +
-      scale_fill_continuous(breaks = c(1, 30, 60, 100),
-                            low = "#BACDB0", high = "#475B63",  na.value = "white",
-                            name = "Total de fosas") +
-      labs(title = "Distribución territorial del total de fosas observadas por prensa en municipios de México",
-           subtitle = "2007-2019") +
-      theme_void(base_family = "Courier New") +
-      theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 12),
-            plot.subtitle = element_text(hjust = 0.5, face = "bold", size = 10))
-
-
-walk(devices, ~ ggsave(filename = file.path(paste0(files$mapa_munis, .x)),
-                       device = .x, width = 14, height = 10))
 
 # Análisis de texto -------------------------------------------------------
 
@@ -69,7 +35,7 @@ custom_stop_words <- bind_rows(stop_words,
                                       lexicom = "custom"))
 
 
-# tokenizar 
+# tokenizar el texto de las columnas 
 fosas_tokens <- fosas_clean %>% 
    select(estado, descripcion_geo) %>% 
    unnest_tokens(word, descripcion_geo)  %>% 
@@ -101,7 +67,7 @@ walk(devices, ~ ggsave(filename = file.path(paste0(files$top_sitios, .x)),
                        device = .x, width = 14, height = 10))
 
 
-# filtrar estados para graficar 
+# filtrar estados para sacar TF-IDF
 estados <- fosas_tokens %>% 
    filter(estado == "Jalisco" | estado == "Nuevo León" | estado == "Zacatecas" |
              estado == "Tamaulipas" | estado == "Veracruz de Ignacio de la Llave" |
