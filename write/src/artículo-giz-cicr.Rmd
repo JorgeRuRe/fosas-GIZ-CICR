@@ -2,6 +2,13 @@
 title: "Características geográficas de los hallazgos de fosas clandestinas obervadas por la prensa en México: Una aproximación desde la estadística y la minería de textos." 
 author: "Jorge Ruiz Reyes"
 date: "22/04/2021"
+abstract: >
+ Los hallazgos de fosas clandestinas en México han sido recurrentes y extendidos durante quince años. Esto ha llevado a que existan diversos esfuerzos por documentar los hechos y aproximarse a la magnitud éstos, sobre todo para conocer el total de fosas y cuerpos de personas que han sido exhumadas en diferentes regiones. A pesar de esto, existe información sobre los hallazgos de fosas que todavía no ha sido analizada para identificar otros patrones de los hallazgos durante este periodo. 
+ 
+ El presente artículo mostrará cómo se pueden utilizar herramientas de la estadística y la minería de textos para analizar las descripciones geográficas redacatadas por notas de prensa escrita nacional y local, que han documentado hallazgos de fosas clandestinas entre 2007 y 2019. El objetivo es extraer el texto de estas notas e identificar cuáles son los sitios donde se han observado las fosas, así como de identificar diferencias cualitativas entre los diferentes estados de la república que han tenido reportes. Con esto se propone una nueva ruta para analizar información que aporte a estudios de contexto y procesos de búsqueda de personas en el país. 
+ 
+ **Palabras clave**: Fosas clandestinas, Minería de Textos, Prensa, México. 
+
 output:
   word_document: 
     reference_docx: template_giz.docx
@@ -40,11 +47,11 @@ El fenómeno de la desaparición de personas y hallazgos de fosas clandestinas e
 
 A pesar de la escala de los hallazgos de fosas, existen tres retos alrededor del fenómeno que deben ser atendidos para lograr implementar políticas públicas adecuadas en materia de búsqueda, exhumación e identificación de personas: 1) estimar la verdadera magnitud del problema; 2) superar los problemas de intercambio de información e identificación de cuerpos de personas que permancen sin identificar y; 3) conocer los patrones cuantitativos y cualitativos de los hallazgos de fosas que nos permitan generar nuevas búsquedas.
 
-Este artículo presentará una aproximación que nos permita seguir generando respuestas respecto al tercer punto. Para hacerlo se realizará un ejercicio de análisis de texto cuantitativo sobre notas de prensa que han registrado hallazgos de fosas clandestinas en el periodo 2009-2019. El objetivo es identificar las caracterísiticas geográficas de los sitios descritos por las y los periodistas, y reconocer posibles diferencias y similitudes entre municipios y regiones. Con esto se pretende mostrar posibles nuevas rutas que sigan aportando al estudio de la desaparición y a la pregunta sobre dónde buscar a las personas desaparecidas.
+Este artículo presenta una aproximación que nos permite seguir generando respuestas respecto al tercer punto. Para hacerlo se realizó un ejercicio de análisis de texto cuantitativo sobre notas de prensa que han registrado hallazgos de fosas clandestinas en el periodo 2009-2019. El objetivo es identificar las caracterísiticas geográficas de los sitios descritos por las y los periodistas que han documentado los hallazgos de fosas clandestinas, y reconocer posibles diferencias y similitudes entre los municipios y regiones geográficas descritas. Con esto se pretende mostrar posibles nuevas rutas que sigan aportando al estudio de la desaparición y a la pregunta sobre dónde buscar a las personas desaparecidas.
 
 # Análisis
 
-Los hallazgos de fosas clandestinas han sido registrados y observados en México por fuentes fuentes oficiales, prensa escrita nacional y local, así como por colectivos de familiares en búsqueda. Esta información cuenta con características específicas y se ve condicionada por la capacidad política, económica o geográfica que tienen los actores para documentarla [**4**]. Sabemos que existen municipios y zonas que solo son observadas por la prensa, mientras que otras zonas solo son documentadas por las autoridades o por colectivos de familiares. No solo esto, sino que la información que se produce de las fuentes es cualitativamente distinta, ya que los objetivos de su producción tiene fines distintos [**5**]. Esto significa que tenemos información dispersa y fragmentada, que responde a las capacidades que tenemos de documentar los hechos.
+Los hallazgos de fosas clandestinas han sido registrados y observados en México por fuentes oficiales, prensa escrita nacional y local, así como por colectivos de familiares en búsqueda. Esta información cuenta con características específicas y se ve condicionada por la capacidad política, económica o geográfica que tienen los actores para documentarla [**4**]. Sabemos que existen municipios y zonas que solo son observadas por la prensa, mientras que otras zonas sólo son documentadas por las autoridades o por colectivos de familiares. No solo esto, sino que la información que se produce de las fuentes es cualitativamente distinta, ya que los objetivos de su producción tiene fines distintos [**5**]. Esto significa que tenemos información dispersa y fragmentada, que responde a las capacidades que tenemos de documentar los hechos.
 
 Dicha fragmentación o sesgos en la información son un reto, sin embargo son comunes en contextos de violencia extendida como el mexicano. Sobre todo porque, en términos estadísticos, no son muestras representativas de los hechos de la violencia [**6**]. A pesar de esto, las fuentes contienen información que es valiosa porque nos permiten conocer los hechos y el contexto bajo el que se desarrolla esta violencia.
 
@@ -60,7 +67,7 @@ knitr::include_graphics(files$descripción_fosa)
 
 La **Imagen 1** recupera la descripción de una fosa clandestina localizada en Acapulco, Guerrero, en noviembre de 2020 [**8**]. Como se puede ver, este fragmento no solo nos da información de cuántas fosas y osamentas se localizaron, sino que también nos da detalles geográficos, como el parque "El Veladero" y la colonia "Alta Cuauhtémoc". Este tipos de datos son comunes en las descripciones de las fosas que se han hecho por la prensa desde el año 2007 en el país.
 
-Si tomamos un número mayor de notas y extraemos el texto de éstas, entonces se pueden generar análisis cuantitativos de texto que nos permitan conocer las características de estos sitios en las diferentes regiones del país. Esta aproximación metodológica es conocida como *minería de textos*, la cual integra técnicas provenientes de la estadística, el aprendizaje de máquina (machine learning) y la lingüistica computacional para descrubir patrones de datos no estructurdos en forma de texto [**9**].
+Si tomamos un número mayor de notas y extraemos el texto de éstas, se pueden generar análisis cuantitativos de texto que nos permitan conocer las características de estos sitios en las diferentes regiones del país. Esta aproximación metodológica es conocida como *minería de textos*, la cual integra técnicas provenientes de la estadística, el aprendizaje de máquina (machine learning) y la lingüistica computacional para descrubir patrones de datos no estructurdos en forma de texto [**9**].
 
 ```{r, echo=FALSE, include=FALSE, warning=FALSE, comment=FALSE}
 # Datos por municipio
@@ -78,9 +85,9 @@ suma_fosas <- casos_por_municipio %>%
 mun_conf <- casos_por_municipio %>% nrow()
 ```
 
-Utilizando la base de datos de fosas clandestinas generada por el Programa de Derechos Humanos de la Universidad Iberoamericana Ciudad de México (PDH Ibero), se tomaron las descripciones geográficas de 639 sitios que reportaron un total de `r suma_fosas` en `r mun_conf` municipios del país entre 2007 y 2019 [**2**]. Cada uno de los sitios tuvo por lo menos un reporte prensa, sin embargo, existen hallazgos donde podían existir más de diez reportes, dada la atención mediática de los hechos.[^1] Lo anterior permitió tener una cantidad suficiente de texto con la que se exploró de manera preliminar, la posibilidad de extraer información cualitativa sobre las caracerísticas de las fosas que son observadas por la prensa.^[El análisis se realizó utilizando el lenguaje de programación R. Los datos y el código pueden consultarse en este repositorio: <https://github.com/JorgeRuRe/fosas-GIZ-CICR>]
+Utilizando la base de datos de fosas clandestinas generada por el Programa de Derechos Humanos de la Universidad Iberoamericana Ciudad de México (PDH Ibero), se tomaron las descripciones geográficas de 639 sitios que reportaron un total de `r suma_fosas` fosas en `r mun_conf` municipios del país entre 2007 y 2019 [**2**]. Cada uno de los sitios tuvo por lo menos un reporte prensa, sin embargo, existen hallazgos donde podían existir más de diez reportes, dada la atención mediática de los hechos.[^1] Lo anterior permitió tener una cantidad suficiente de texto con la que se exploró de manera preliminar, la posibilidad de extraer información cualitativa sobre las caracerísticas de las fosas que son observadas por la prensa.^[El análisis se realizó utilizando el lenguaje de programación R. Los datos y el código pueden consultarse en este repositorio: <https://github.com/JorgeRuRe/fosas-GIZ-CICR>]
 
-Si tomamos en cuenta los 320 municipios donde se han localizado fosas reportadas por la prensa, poder ver que las zonas geográficas se componen por las siguientes características:
+Si tomamos en cuenta los 320 municipios donde se han localizado fosas reportadas por la prensa, se puede observar que las zonas geográficas se componen por las siguientes características:
 
 ## Figura 1
 
@@ -94,11 +101,11 @@ Lo anterior indica las dificultades y las diferentes estrategias que deben ser p
 
 Consecuentemente, con la minería de textos podemos encontrar otros patrones que nos permitan conocer si hay sitios característicos o "distintivos" donde se localizan fosas clandestinas en estados del país, en comparación con otros.
 
-Calculando una medida estadística conocida como *Frecuencia de término - frecuecia inversa de término*(TF-IDF por sus siglas en inglés), podemos conocer la relevancia que tiene una palabra para un subconjunto de textos, con base una colección de textos mayor [**10**].^[Específicamente, se multiplican dos métricas: 1) la frecuencia de término donde se identifica la frecuencia de la palabra en el subconjunto y 2) la frecuencia inversa de documento donde se divide el número total de documentos en la colección, por el número de subconjuntos que contienen el término, y tomando el logarítimico. La fórmula puede verse como: $$tf idf (t,d,D) = tf(t,d) * idf(t, D)$$ donde: $$tf(t,d) = \log(1 + freq(t,d))$$ y donde: $$idf(t,D) = \log(N / count(d \in D:t \in d))$$]
+Calculando una medida estadística conocida como *Frecuencia de término - frecuecia inversa de término*(TF-IDF por sus siglas en inglés), podemos conocer la relevancia que tiene una palabra para un subconjunto de textos, con base una colección de textos mayor [**10**].^[Específicamente, se multiplican dos métricas: 1) la frecuencia de término donde se identifica la frecuencia de la palabra en el subconjunto y 2) la frecuencia inversa de documento donde se divide el número total de documentos en la colección, por el número de subconjuntos que contienen el término; ambos términos en escala logarítmica. La fórmula puede verse como: $$tf idf (t,d,D) = tf(t,d) * idf(t, D)$$ donde: $$tf(t,d) = \log(1 + freq(t,d))$$ y donde: $$idf(t,D) = \log(N / count(d \in D:t \in d))$$]
 
 En nuestro caso, agruparemos el texto de las notas con base a los estados del país, donde cada palabra que indique una descripción geográfica en un estado es un subcojunto de las descripciones geográficas de todos los estados. Posteriormente, analizamos si una palabra se menciona con frecuencia en un determinado estado o si no se menciona. De esta forma, mientras más frecuente sea una palabra en un estado, pero no en otro, podemos establecer que es un sitio distintivo donde se localizan fosas en comparación con otros.
 
-Los resultados de esta medida pueden observarse a continuación:
+Los resultados pueden observarse a continuación:
 
 **Figura 2**
 
