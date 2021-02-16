@@ -2,7 +2,7 @@
 # Maintainers: JRR
 # Copyright:   2021, PDH-IBERO GPL v2 or later
 # ===========================================================
-# fosas-GIZ-CICR/import/src/import.R
+
 
 # Paquetes ----------------------------------------------------------------
 if(!require('pacman')) {install.packages('pacman')}
