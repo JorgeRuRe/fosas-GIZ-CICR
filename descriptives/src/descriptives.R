@@ -53,10 +53,11 @@ fosas_tokens %>%
    coord_flip() +
    theme_minimal(base_family = "Courier New") +
    theme(plot.title = element_text(face = "bold", hjust = 0.5),
-         plot.subtitle = element_text(hjust = 0.5),
+         plot.subtitle = element_text(face = "bold", hjust = 0.5),
          panel.grid.major.x = element_line(colour="grey", size=0.5),
-         axis.text.y = element_text(face = "bold")) +
-   labs(y = "Count",
+         axis.text.y = element_text(face = "bold", size = 12),
+         axis.text.x = element_text(face = "bold", size = 12)) +
+   labs(y = "Total de veces mencionadas en sitios",
         x = NULL,
         title = "Ubicaciones geográficas de fosas clandestinas observadas por prensa",
         subtitle = "Con base en la descripción del texto de la nota") 
@@ -92,6 +93,8 @@ estados_tf <- estados %>%
 
 # Graficar 
 estados_tf %>%
+   mutate(estado = ifelse(estado == "Veracruz de Ignacio de la Llave", "Veracruz", 
+                                   estado)) %>% 
    ggplot(aes(reorder(word, tf_idf), tf_idf, fill= estado)) +
    geom_col(fill = "#558B6E") +
    coord_flip() +
@@ -100,12 +103,13 @@ estados_tf %>%
    theme(plot.title = element_text(face = "bold", hjust = 0.5),
          plot.subtitle = element_text(face = "bold", hjust = 0.5),
          panel.grid.major.x = element_line(colour="grey", size=0.5),
-         axis.text.y = element_text(face = "bold"),
-         axis.text.x = element_text(face = "bold")) +
+         axis.text.y = element_text(face = "bold", size = 12),
+         strip.background = element_blank(),
+         strip.text = element_text(size = 14, face = "bold")) +
    labs(y = NULL,
         x = NULL,
         title = "Sitios característicos donde se localizan fosas clandestinas observadas por prensa",
-        subtitle = "En seis entidades de la república ")
+        subtitle = "En seis entidades de la república")
    
 walk(devices, ~ ggsave(filename = file.path(paste0(files$tf_idf, .x)),
                        device = .x, width = 14, height = 10))
